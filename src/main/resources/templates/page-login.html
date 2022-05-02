@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Eunomia | Login</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Qubes Bootstrap 4x admin is super flexible, powerful, clean &amp; modern responsive admin dashboard with unlimited possibilities.">
+    <meta name="author" content="GetBootstrap, design by: puffintheme.com">
+
+    <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/animate-css/vivify.min.css}">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" th:href="@{/css/site.min.css}">
+
+</head>
+
+<body class="theme-blue">
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="m-t-30"><i class="fa fa-cube font-25"></i></div>
+        <p>正在加载, 请耐心等待...</p>
+    </div>
+</div>
+<!-- Overlay For Sidebars -->
+
+<div class="auth-main">
+    <div class="auth_div">
+        <div class="card">
+            <div class="auth_brand">
+                <a class="navbar-brand" href="javascript:void(0);"><i class="fa fa-cube font-25"></i> Eunomia</a>
+            </div>
+            <div class="body">
+                <p class="lead">数据用户登录</p>
+
+                <form class="form-auth-small m-t-20" th:action="@{/dataUserLogin}" method="POST">
+                    <div class="form-group">
+                        <label for="username" class="control-label sr-only">用户名</label>
+                        <input type="text" class="form-control round" id="username" name="username" th:value="${username}" placeholder="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label sr-only">密码</label>
+                        <input type="password" class="form-control round" id="password" name="password" th:value="${password}" placeholder="password">
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="fancy-checkbox element-left">
+                            <input type="checkbox">
+                            <span>记住我</span>
+                        </label>
+                    </div>
+                    <button type="submit" id="submit" class="btn btn-primary btn-round btn-block">登录</button>
+                    <div class="bottom">
+                        <span class="helper-text m-b-10"><i class="fa fa-lock"></i> <a href="page-forgot-password.html">忘记密码?</a></span>
+                        <span>Don't have an account? <a href="page-register.html">注册</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END WRAPPER -->
+
+<!-- Latest jQuery -->
+<script th:src="@{/vendor/jquery/jquery-3.3.1.min.js}"></script>
+
+<!-- Bootstrap 4x JS  -->
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/bundles/vendorscripts.bundle.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+</body>
+</html>

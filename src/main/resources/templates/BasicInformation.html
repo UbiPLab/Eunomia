@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <title>Eunomia | 个人信息</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="Qubes Bootstrap 4x admin is super flexible, powerful, clean &amp; modern responsive admin dashboard with unlimited possibilities.">
+    <meta name="author" content="GetBootstrap, design by: puffintheme.com">
+
+    <link rel="icon" th:href="@{favicon.ico}" type="image/x-icon">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/animate-css/vivify.min.css}">
+
+    <link rel="stylesheet" th:href="@{/vendor/jquery-datatable/dataTables.bootstrap4.min.css}">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" th:href="@{/css/site.min.css}">
+    <link rel="stylesheet" th:href="@{/css/my.css}">
+    <script th:src="@{/js/web3.min.js}"></script>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/blockChain.js}"></script>
+</head>
+
+<body class="theme-blue">
+
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        &lt;!&ndash; 连接web3 &ndash;&gt;-->
+<!--        if (window.ethereum) {-->
+<!--            web3Provider = window.ethereum;-->
+<!--            try {-->
+<!--                // Request account access-->
+<!--                window.ethereum.enable();-->
+<!--            } catch (error) {-->
+<!--                // User denied account access...-->
+<!--                console.error("User denied account access")-->
+<!--            }-->
+<!--        }-->
+<!--        web3 = new Web3(web3Provider);-->
+
+<!--        &lt;!&ndash; 检查web3连接状态 &ndash;&gt;-->
+<!--        if (!web3.isConnected()) {-->
+<!--            console.log("web3连上了");-->
+<!--        } else {-->
+<!--            console.log("web3没连上");-->
+<!--        }-->
+
+<!--        web3.eth.getBlockNumber(function (error, result) {-->
+<!--            $("#blockNumber").text(result);-->
+<!--        });-->
+
+<!--        web3.eth.getTransactionCount(function (error, result) {-->
+<!--            $("#transactionCount").text(result);-->
+<!--        });-->
+
+<!--        web3.eth.getGasPrice(function (error, result) {-->
+<!--            $("#gas_price").text(result);-->
+<!--        });-->
+
+<!--        $("#transactionBlockTimeout").text("5s");-->
+
+<!--    })-->
+<!--</script>-->
+
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="m-t-30"><i class="fa fa-cube font-25"></i></div>
+        <p>Please wait...</p>        
+    </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+
+<div id="wrapper">
+    <!-- 顶部栏 -->
+    <nav class="navbar navbar-fixed-top">
+        <!-- 顶部栏容器 -->
+        <div class="container-fluid">
+            <!-- 左顶部栏 -->
+            <div class="navbar-left">
+                <div class="navbar-brand">
+                    <a class="small_menu_btn" href="javascript:void(0);"><i class="fa fa-align-left"></i></a>
+                    <a th:href="@{/toIndex}"><span>Eunomia 安全车联网数字取证区块链</span></a>    
+                </div>
+            </div>
+
+            <!-- 右顶部栏 -->
+            <div class="navbar-right">
+                <div id="navbar-menu">
+                    <ul class="nav navbar-nav">
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="icon-menu"><i class="fa fa-power-off"></i></a></li>
+                        <li sec:authorize="!isAuthenticated()"><a th:href="@{/toLogin}" class="icon-menu">登录</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 左边栏 -->
+    <div id="left-sidebar" class="sidebar">
+        <div class="sidebar_list">
+            <div class="tab-content" id="main-menu">
+                <div class="tab-pane active" id="Home-icon">
+                    <nav class="sidebar-nav sidebar-scroll">
+                        <ul class="metismenu">
+                            <li><a th:href="@{/welcome}"><i class="icon-speedometer"></i><span>主面板</span></a></li>
+                            <li sec:authorize="hasRole('admin')" class="my-header">监控功能</li>
+                            <li><a th:href="@{/toMonitor}"><i class="icon-paper-plane"></i><span>系统监控</span></a></li>
+<!--                            <li><a th:href="@{/toUser}"><i class="icon-paper-plane"></i><span>用户监控</span></a></li>-->
+                            <li class="active" ><a th:href="@{/toCase}"><i class="icon-paper-plane"></i><span>案件监控</span></a></li>
+                            <li><a th:href="@{/toEvidence}"><i class="icon-paper-plane"></i><span>证据监控</span></a></li>
+                            <li><a th:href="@{/DefectorTracking.html}"><i class="icon-paper-plane"></i><span>叛逃者追踪</span></a></li>
+
+                            <li sec:authorize="hasRole('admin')" class="my-header">用户功能</li>
+                            <li sec:authorize="hasRole('admin')"><a th:href="@{/page-createCase.html}"><i class="icon-paper-plane"></i><span>创建案件</span></a></li>
+                            <li sec:authorize="hasRole('admin')"><a th:href="@{/case}"><i class="icon-paper-plane"></i><span>案件列表</span></a></li>
+                            <li sec:authorize="hasRole('admin')"><a th:href="@{/forms-validation.html}"><i class="icon-paper-plane"></i><span>案件分析</span></a></li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主页面部分 -->
+    <div id="main-content">
+        <!-- 主页面顶部 -->
+        <div class="block-header">
+            <div class="row clearfix">
+                <!-- 页面导航说明 -->
+                <div class="col-md-6 col-sm-12">
+                    <h2>个人信息</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a href="#"><i class="fa fa-cube my-font-size-1rem"></i></a></li>
+                          <li class="breadcrumb-item"><a th:href="@{/toIndex}" class="my-font-size-1rem">Eunomia</a></li>
+                          <li class="breadcrumb-item my-font-size-1rem active" aria-current="page">基本信息监控</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主页面主体部分 -->
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>个人信息</h2>
+                            <ul class="header-dropdown dropdown">
+                                <li><a href="javascript:void(0);" class="full-screen"><i class="icon-frame"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>信息名称</th>
+                                            <th>信息内容</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>姓名</td>
+                                            <td th:text="${informs.getName()}"></td>
+                                        </tr>
+                                        <tr>
+                                            <!-- RPC SERVER -->
+                                            <td>警号</td>
+                                            <td th:text="${attrs.getPoliceNumber()}"></td>
+                                        </tr>
+                                        <tr>
+                                            <!-- NETWORK ID -->
+                                            <td>警种</td>
+                                            <td th:text="${attrs.getPoliceType()}"></td>
+                                        </tr>
+                                        <tr>
+                                            <!-- 共识机制 -->
+                                            <td>所属单位</td>
+                                            <td th:text="${attrs.getPoliceStation()}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>电子邮箱</td>
+                                            <td th:text="${informs.getEmail()}"></td>
+                                        </tr>
+                                        <tr>
+                                            <!-- GAS PRICE -->
+                                            <td>电话号码</td>
+                                            <td th:text="${informs.getTel()}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>居住地址</td>
+                                            <td th:text="${informs.getAddress()}"></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <!-- Javascript -->
+    <!-- Latest jQuery -->
+    <script th:src="@{/vendor/jquery/jquery-3.3.1.min.js}"></script>
+
+    <!-- Bootstrap 4x JS  -->
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+    <script th:src="@{/bundles/vendorscripts.bundle.js}"></script>
+
+    <script th:src="@{/bundles/datatablescripts.bundle.js}"></script>
+
+    <script th:src="@{/js/common.js}"></script>
+    <script th:src="@{/js/pages/tables/invoice.js}"></script>
+
+    <script th:src="@{/bundles/datatablescripts.bundle.js}"></script>
+    <script th:src="@{/vendor/jquery-datatable/buttons/dataTables.buttons.min.js}"></script>
+    <script th:src="@{/vendor/jquery-datatable/buttons/buttons.bootstrap4.min.js}"></script>
+    <script th:src="@{/vendor/jquery-datatable/buttons/buttons.colVis.min.js}"></script>
+    <script th:src="@{/vendor/jquery-datatable/buttons/buttons.html5.min.js}"></script>
+    <script th:src="@{/vendor/jquery-datatable/buttons/buttons.print.min.js}"></script>
+    <script th:src="@{/vendor/sweetalert/sweetalert.min.js}"></script><!-- SweetAlert Plugin Js -->
+    <script th:src="@{/js/pages/tables/jquery-datatable.js}"></script>
+</body>
+
+</html>

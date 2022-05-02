@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Eunomia | Form Validation</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Qubes Bootstrap 4x admin is super flexible, powerful, clean &amp; modern responsive admin dashboard with unlimited possibilities.">
+<meta name="author" content="GetBootstrap, design by: puffintheme.com">
+
+    <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/animate-css/vivify.min.css}">
+
+<link rel="stylesheet" th:href="@{/vendor/bootstrap-multiselect/bootstrap-multiselect.css}">
+<link rel="stylesheet" th:href="@{/vendor/parsleyjs/css/parsley.css}">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" th:href="@{/css/site.min.css}">
+    <link rel="stylesheet" th:href="@{/css/steps.css}">
+
+    <style type="text/css">
+        #div1{
+            margin-bottom: 25px;
+        }
+        #div2{
+            margin-top: 50px;
+        }
+    </style>
+
+</head>
+<body class="theme-blue">
+
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="m-t-30"><i class="fa fa-cube font-25"></i></div>
+        <h1>Please wait...</h1>
+    </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+
+<div id="wrapper">
+
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+
+            <div class="navbar-left">
+                <div class="navbar-brand">
+                    <a class="small_menu_btn" href="javascript:void(0);"><i class="fa fa-align-left"></i></a>
+                    <a th:href="@{/welcome}"><span>Eunomia 安全车联网数字取证</span></a>
+                </div>
+            </div>
+            <!-- 右顶部栏 -->
+            <div class="navbar-right">
+                <div id="navbar-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                        <li><a href="page-login.html" class="icon-menu"><i class="fa fa-power-off"></i></a></li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- 左边栏 -->
+    <div id="left-sidebar" class="sidebar">
+        <div class="sidebar_list">
+            <div class="tab-content" id="main-menu">
+                <div class="tab-pane active" id="Home-icon">
+                    <nav class="sidebar-nav sidebar-scroll">
+                        <ul class="metismenu">
+                            <li><a th:href="@{/welcome}"><i class="icon-speedometer"></i><span>主面板</span></a></li>
+                            <li sec:authorize="hasRole('admin')" class="my-header">用户功能</li>
+                            <li sec:authorize="hasRole('admin')"><a th:href="@{/page-createCase.html}"><i class="icon-paper-plane"></i><span>创建案件</span></a></li>
+                            <li sec:authorize="hasRole('admin')"><a th:href="@{/case}"><i class="icon-paper-plane"></i><span>案件列表</span></a></li>
+                            <li class="active" sec:authorize="hasRole('admin')"><a th:href="@{/forms-validation.html}"><i class="icon-paper-plane"></i><span>案件分析</span></a></li>
+                            <!--                            <li sec:authorize="hasRole('admin')"><a th:href="@{/toMonitorBlock}"><i class="icon-paper-plane"></i><span>区块链区块监控</span></a></li>-->
+                            <!--                            <li sec:authorize="hasRole('admin')"><a th:href="@{/toMonitorTransaction}"><i class="icon-paper-plane"></i><span>区块链交易监控</span></a></li>-->
+                            <!--                            <li sec:authorize="hasRole('admin')"><a th:href="@{/toMonitorVerification}"><i class="icon-paper-plane"></i><span>系统验证监控</span></a></li>-->
+                            <!--                            <li sec:authorize="hasRole('user')" class="my-header">用户功能</li>-->
+                            <!--                            <li class="active" sec:authorize="hasRole('user')"><a th:href="@{/toWeb3AddTx}"><i class="icon-paper-plane"></i><span>添加调查信息</span></a></li>-->
+                            <!--                            <li sec:authorize="hasRole('user')"><a th:href="@{/toWeb3QuireTx}"><i class="icon-paper-plane"></i><span>查询调查信息</span></a></li>-->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <div class="block-header" id="div1">
+            <div class="row clearfix">
+                <div class="col-md-12 col-sm-12">
+                    <h1>案件分析</h1>
+                    <p style="color: blue" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a href="#"><i class="fa fa-cube"></i></a></li>
+                          <li class="breadcrumb-item"><a href="#">Eunomia</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">分析报告</li>
+                        </ol>
+                    </nav>
+                    <div class="steps">
+
+                        <div class="step-line step-completed"></div>
+
+                        <div class="step step-completed">
+                            <div class="step-text">1</div>
+                            <div class="step-main">1.创建案件</div>
+                        </div>
+
+                        <div class="step-line step-completed"></div>
+                        <div class="step-line step-completed"></div>
+
+
+                        <div class="step step-completed">
+                            <div class="step-text">2</div>
+                            <div class="step-main">2.调查请求</div>
+                        </div>
+
+                        <div class="step-line step-completed"></div>
+                        <div class="step-line step-completed"> </div>
+                        <div class="step step-completed">
+                            <div class="step-text">3</div>
+                            <div class="step-main">3.数据请求</div>
+                        </div>
+                        <div class="step-line step-completed"></div>
+                        <div class="step-line step-completed"> </div>
+                        <div class="step step-completed">
+                            <div class="step-text">4</div>
+                            <div class="step-main">4.数据检索</div>
+                        </div>
+                        <div class="step-line step-completed"></div>
+                        <div class="step-line step-completed"> </div>
+                        <div class="step step-completed">
+                            <div class="step-text">5</div>
+                            <div class="step-main">5.数据分析</div>
+                        </div>
+                        <div class="step-line step-completed"></div>
+                        <div class="step-line step-completed"></div>
+                        <div class="step step-completed">
+                            <div class="step-text">6</div>
+                            <div class="step-main">6.提交报告</div>
+                        </div>
+                        <div class="step-line step-completed"></div>
+                        <div class="step-line "></div>
+                        <div class="step">
+                            <div class="step-text">7</div>
+                            <div class="step-main">7.调查结束</div>
+                        </div>
+                        <div class="step-line"></div>
+                    </div>
+                </div>            
+<!--                <div class="col-md-6 col-sm-12 text-right hidden-xs">-->
+<!--                    <a href="javascript:void(0);" class="btn btn-sm btn-primary" title="">Create Campaign</a>-->
+<!--                </div>-->
+            </div>
+        </div>
+
+        <div class="container-fluid" id="div2">
+           
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>案件</h2>
+                        </div>
+                        <div class="body">
+                            <form th:action="@{/report}" id="basic-form" method="post" novalidate>
+                                <div class="form-group">
+                                    <label>案件编号</label>
+                                    <input type="text" class="form-control" required name="caseId">
+                                </div>
+                                <div class="form-group">
+                                    <label>用户Id</label>
+                                    <input type="text" class="form-control" required name="username">
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label>Email Input</label>
+                                    <input type="email" class="form-control" required>
+                                </div> -->
+                                <div class="form-group">
+                                    <label>案件描述</label>
+                                    <textarea class="form-control" rows="5" cols="30" name="report" required></textarea>
+                                </div>
+                                
+
+<!--                                <div class="form-group">-->
+<!--                                    <label for="text-input1">用户名</label>-->
+<!--                                    <input type="text" id="text-input1" class="form-control" required data-parsley-minlength="8">-->
+<!--                                </div>-->
+
+<!--                                <br>-->
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">提交</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- 
+                    <div class="col-md-12">
+                    <div class="card"> 
+                        <div class="header">
+                            <h2>报告人</h2>
+                        </div>
+                        <div class="body">
+                            <form id="advanced-form" data-parsley-validate novalidate>
+                                <div class="form-group">
+                                    <label for="text-input1">用户名</label>
+                                    <input type="text" id="text-input1" class="form-control" required data-parsley-minlength="8">
+                                </div> -->
+                                <!--
+                                <div class="form-group">
+                                    <label for="text-input2">Between 5-10 Characters</label>
+                                    <input type="text" id="text-input2" class="form-control" required data-parsley-length="[5,10]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="text-input3">Min. Number ( >= 5 )</label>
+                                    <input type="text" id="text-input3" class="form-control" required data-parsley-min="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="text-input4">Between 20-30</label>
+                                    <input type="text" id="text-input4" class="form-control" required data-parsley-range="[20,30]">
+                                </div> 
+                                <div class="form-group">
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-12">
+                                            <label>性别</label>
+                                            <br />
+                                            <label class="fancy-radio">
+                                                <input type="radio" name="gender" value="male" required data-parsley-errors-container="#error-radio">
+                                                <span><i></i>男</span>
+                                            </label>
+                                            <label class="fancy-radio">
+                                                <input type="radio" name="gender" value="female">
+                                                <span><i></i>女</span>
+                                            </label>
+                                            <p id="error-radio"></p>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <label>Select Min. 2 Options</label>
+                                            <br />
+                                            <label class="control-inline fancy-checkbox">
+                                                <input type="checkbox" name="checkbox2" required data-parsley-mincheck="2" data-parsley-errors-container="#error-checkbox2">
+                                                <span>Option 1</span>
+                                            </label>
+                                            <label class="control-inline fancy-checkbox">
+                                                <input type="checkbox" name="checkbox2">
+                                                <span>Option 2</span>
+                                            </label>
+                                            <label class="control-inline fancy-checkbox">
+                                                <input type="checkbox" name="checkbox2">
+                                                <span>Option 3</span>
+                                            </label>
+                                            <p id="error-checkbox2"></p>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <label>Select Between 1-2 Options</label>
+                                            <br />
+                                            <label class="control-inline fancy-checkbox">
+                                                <input type="checkbox" name="checkbox3" required data-parsley-check="[1,2]" data-parsley-errors-container="#error-checkbox3">
+                                                <span>Option 1</span>
+                                            </label>
+                                            <label class="control-inline fancy-checkbox">
+                                                <input type="checkbox" name="checkbox3">
+                                                <span>Option 2</span>
+                                            </label>
+                                            <label class="control-inline fancy-checkbox">
+                                                <input type="checkbox" name="checkbox3">
+                                                <span>Option 3</span>
+                                            </label>
+                                            <p id="error-checkbox3"></p>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </form>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            
+        </div>
+    </div>
+    
+</div>
+
+<!-- Javascript -->
+<!-- Latest jQuery -->
+<script th:src="@{/vendor/jquery/jquery-3.3.1.min.js}"></script>
+
+<!-- Bootstrap 4x JS  -->
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/bundles/vendorscripts.bundle.js}"></script>
+
+<script th:src="@{/vendor/bootstrap-multiselect/bootstrap-multiselect.js}"></script>
+<script th:src="@{/vendor/parsleyjs/js/parsley.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+<script>
+    $(function() {
+        // validation needs name of the element
+        $('#food').multiselect();
+
+        // initialize after multiselect
+        $('#basic-form').parsley();
+    });
+</script>
+</body>
+</html>
+

@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <title>Eunomia | 监控总览</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="Qubes Bootstrap 4x admin is super flexible, powerful, clean &amp; modern responsive admin dashboard with unlimited possibilities.">
+    <meta name="author" content="GetBootstrap, design by: puffintheme.com">
+
+    <link rel="icon" th:href="@{favicon.ico}" type="image/x-icon">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/animate-css/vivify.min.css}">
+
+    <link rel="stylesheet" th:href="@{/vendor/jquery-datatable/dataTables.bootstrap4.min.css}">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" th:href="@{/css/site.min.css}">
+    <link rel="stylesheet" th:href="@{/css/my.css}">
+    <script th:src="@{/js/web3.min.js}"></script>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/blockChain.js}"></script>
+
+</head>
+
+<body class="theme-blue">
+
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="m-t-30"><i class="fa fa-cube font-25"></i></div>
+        <p>Please wait...</p>        
+    </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+
+<div id="wrapper">
+    <!-- 顶部栏 -->
+    <nav class="navbar navbar-fixed-top">
+        <!-- 顶部栏容器 -->
+        <div class="container-fluid">
+            <!-- 左顶部栏 -->
+            <div class="navbar-left">
+                <div class="navbar-brand">
+                    <a class="small_menu_btn" href="javascript:void(0);"><i class="fa fa-align-left"></i></a>
+                    <a th:href="@{/toIndex}"><span>Eunomia</span></a>
+                </div>
+            </div>
+
+            <!-- 右顶部栏 -->
+            <div class="navbar-right">
+                <div id="navbar-menu">
+                    <ul class="nav navbar-nav">
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="icon-menu"><i class="fa fa-power-off"></i></a></li>
+                        <li sec:authorize="!isAuthenticated()"><a th:href="@{/toLogin}" class="icon-menu">登录</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 左边栏 -->
+    <div id="left-sidebar" class="sidebar">
+        <div class="sidebar_list">
+            <div class="tab-content" id="main-menu">
+                <div class="tab-pane active" id="Home-icon">
+                    <nav class="sidebar-nav sidebar-scroll">
+                        <ul class="metismenu">
+                            <li><a th:href="@{/welcome}"><i class="icon-speedometer"></i><span>主面板</span></a></li>
+                            <li sec:authorize="hasRole('admin')" class="my-header">监控功能</li>
+                            <li class="active" ><a th:href="@{/toMonitor}"><i class="icon-paper-plane"></i><span>系统监控</span></a></li>
+                            <li><a th:href="@{/toCase}"><i class="icon-paper-plane"></i><span>案件监控</span></a></li>
+                            <li><a th:href="@{/toEvidence}"><i class="icon-paper-plane"></i><span>证据监控</span></a></li>
+                            <li><a th:href="@{/DefectorTracking.html}"><i class="icon-paper-plane"></i><span>叛逃者追踪</span></a></li>
+
+                            <li sec:authorize="hasRole('user')" class="my-header">用户功能</li>
+                            <li sec:authorize="hasRole('admin')"><a th:href="@{/page-createCase.html}"><i class="icon-paper-plane"></i><span>创建案件</span></a></li>
+                            <li sec:authorize="hasRole('admin')"><a th:href="@{/case}"><i class="icon-paper-plane"></i><span>案件列表</span></a></li>
+                            <li sec:authorize="hasRole('admin')"><a th:href="@{/forms-validation.html}"><i class="icon-paper-plane"></i><span>案件分析</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主页面部分 -->
+    <div id="main-content">
+        <!-- 主页面顶部 -->
+        <div class="block-header">
+            <div class="row clearfix">
+                <!-- 页面导航说明 -->
+                <div class="col-md-6 col-sm-12">
+                    <h2>系统监控</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a href="#"><i class="fa fa-cube my-font-size-1rem"></i></a></li>
+                          <li class="breadcrumb-item"><a th:href="@{/toIndex}" class="my-font-size-1rem">Eunomia</a></li>
+                          <li class="breadcrumb-item my-font-size-1rem active" aria-current="page">系统监控</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主页面主体部分 -->
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <!-- 统计数据用户数量 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="body">
+                            <div class="d-flex align-items-center">
+                                <div class="icon-in-bg bg-indigo text-white rounded-circle"><i class="fa fa-university"></i></div>
+                                <div class="ml-4">
+                                    <span>数据用户数量</span>
+                                    <h4 class="mb-0 font-weight-medium" th:text="${count1}"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 统计数据提供者数量 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="body">
+                            <div class="d-flex align-items-center">
+                                <div class="icon-in-bg bg-azura text-white rounded-circle"><i class="fa fa-users"></i></div>
+                                <div class="ml-4">
+                                    <span>数据提供者数量</span>
+                                    <h4 class="mb-0 font-weight-medium" th:text="${count2}"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 案件证据统计 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="body">
+                            <div class="d-flex align-items-center">
+                                <div class="icon-in-bg bg-orange text-white rounded-circle"><i class="fa fa-file"></i></div>
+                                <div class="ml-4">
+                                    <span>案件数量</span>
+                                    <h4 class="mb-0 font-weight-medium" th:text="${count3}"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 数据提供者信息统计 -->
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>数据提供者信息统计</h2>
+                        </div>
+
+                        <div class="row clearfix">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-custom spacing5 mb-3">
+                                        <thead>
+                                            <tr>
+                                                <th class="hidden-sm-down text-center" style="width: 20px;">序号</th>
+                                                <th class="hidden-sm-down text-center" style="width: 120px;">参数</th>
+                                                <th class="hidden-sm-down text-center" style="width: 120px;">数值</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="hidden-sm-down text-center">1</td>
+                                                <td class="hidden-sm-down text-center">数据提供者实体注册</td>
+                                                <td class="hidden-sm-down text-center" th:text="${count2}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="hidden-sm-down text-center">2</td>
+                                                <td class="hidden-sm-down text-center">数据提供者数据上传</td>
+                                                <td class="hidden-sm-down text-center" th:text="${count4}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+
+                <!-- 数据用户信息统计 -->
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>数据用户信息统计</h2>
+                        </div>
+
+                        <div class="row clearfix">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-custom spacing5 mb-3">
+                                        <thead>
+                                            <tr>
+                                                <th class="hidden-sm-down text-center" style="width: 20px;">序号</th>
+                                                <th class="hidden-sm-down text-center" style="width: 120px;">参数</th>
+                                                <th class="hidden-sm-down text-center" style="width: 120px;">数值</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="hidden-sm-down text-center">1</td>
+                                                <td class="hidden-sm-down text-center">数据用户实体注册</td>
+                                                <td class="hidden-sm-down text-center" th:text="${count1}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="hidden-sm-down text-center">2</td>
+                                                <td class="hidden-sm-down text-center">正在办案警察数量</td>
+                                                <td class="hidden-sm-down text-center">2</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+
+                <!-- 正在办案警察统计 -->
+<!--                <div class="col-lg-12">-->
+<!--                    <div class="card">-->
+<!--                        <div class="header">-->
+<!--                            <h2>正在办案警察统计</h2>-->
+<!--                        </div>-->
+
+<!--                        <div class="row clearfix">-->
+<!--                            <div class="col-md-12">-->
+<!--                                <div class="table-responsive">-->
+<!--                                    <table class="table table-hover table-custom spacing5 mb-3">-->
+<!--                                        <thead>-->
+<!--                                            <tr>-->
+<!--                                                <th class="hidden-sm-down text-center" style="width: 20px;">序号</th>-->
+<!--                                                <th class="hidden-sm-down text-center" style="width: 120px;">警察用户名</th>-->
+<!--                                                <th class="hidden-sm-down text-center" style="width: 120px;">警察类型</th>-->
+<!--                                                <th class="hidden-sm-down text-center" style="width: 120px;">案件名</th>-->
+<!--                                                <th class="hidden-sm-down text-center" style="width: 120px;">DFA状态</th>-->
+<!--                                            </tr>-->
+<!--                                        </thead>-->
+<!--                                        <tbody>-->
+<!--                                            <tr>-->
+<!--                                                <td class="hidden-sm-down text-center">1</td>-->
+<!--                                                <td class="hidden-sm-down text-center">tiantian152</td>-->
+<!--                                                <td class="hidden-sm-down text-center">交警</td>-->
+<!--                                                <td class="hidden-sm-down text-center">合肥市蜀山区追尾案件</td>-->
+<!--                                                <td class="hidden-sm-down text-center ">调查启动</td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td class="hidden-sm-down text-center">2</td>-->
+<!--                                                <td class="hidden-sm-down text-center">tch</td>-->
+<!--                                                <td class="hidden-sm-down text-center">交警</td>-->
+<!--                                                <td class="hidden-sm-down text-center">合肥市经开区追尾案件</td>-->
+<!--                                                <td class="hidden-sm-down text-center">数据请求</td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td class="hidden-sm-down text-center">3</td>-->
+<!--                                                <td class="hidden-sm-down text-center">wjh</td>-->
+<!--                                                <td class="hidden-sm-down text-center">民警</td>-->
+<!--                                                <td class="hidden-sm-down text-center">合肥市蜀山区手机丢失案件</td>-->
+<!--                                                <td class="hidden-sm-down text-center">数据检索</td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td class="hidden-sm-down text-center">4</td>-->
+<!--                                                <td class="hidden-sm-down text-center">xww</td>-->
+<!--                                                <td class="hidden-sm-down text-center">刑警</td>-->
+<!--                                                <td class="hidden-sm-down text-center">合肥市蜀山区抢劫案件</td>-->
+<!--                                                <td class="hidden-sm-down text-center">结果报告</td>-->
+<!--                                            </tr>-->
+<!--                                        </tbody>-->
+<!--                                    </table>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <!-- Javascript -->
+    <!-- Latest jQuery -->
+    <script th:src="@{/vendor/jquery/jquery-3.3.1.min.js}"></script>
+
+    <!-- Bootstrap 4x JS  -->
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+    <script th:src="@{/bundles/vendorscripts.bundle.js}"></script>
+
+    <script th:src="@{/bundles/datatablescripts.bundle.js}"></script>
+
+    <script th:src="@{/js/common.js}"></script>
+    <script th:src="@{/js/pages/tables/invoice.js}"></script>
+</body>
+
+</html>

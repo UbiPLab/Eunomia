@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<title>Qubes | Invoices</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Qubes Bootstrap 4x admin is super flexible, powerful, clean &amp; modern responsive admin dashboard with unlimited possibilities.">
+<meta name="author" content="GetBootstrap, design by: puffintheme.com">
+
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<!-- VENDOR CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/animate-css/vivify.min.css}">
+
+<link rel="stylesheet" th:href="@{/vendor/jquery-datatable/dataTables.bootstrap4.min.css}">
+<!-- MAIN CSS -->
+    <link rel="stylesheet" th:href="@{/css/site.min.css}">
+    <link rel="stylesheet" th:href="@{/css/steps.css}">
+
+    <style type="text/css">
+        #div1{
+            margin-bottom: 25px;
+        }
+        #div2{
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body class="theme-blue">
+
+ Page Loader
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="m-t-30"><i class="fa fa-cube font-25"></i></div>
+        <h1>Please wait...</h1>
+    </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+
+<div id="wrapper">
+
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+
+            <div class="navbar-left">
+                <div class="navbar-brand">
+                    <a class="small_menu_btn" href="javascript:void(0);"><i class="fa fa-align-left"></i></a>
+                    <a th:href="@{/index.html}"><span>Eunomia 安全车联网数字取证</span></a>
+                </div>
+            </div>
+
+            <!-- 右顶部栏 -->
+            <div class="navbar-right">
+                <div id="navbar-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                        <li><a href="page-login.html" class="icon-menu"><i class="fa fa-power-off"></i></a></li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- 左边栏 -->
+    <div id="left-sidebar" class="sidebar">
+        <div class="sidebar_list">
+            <div class="tab-content" id="main-menu">
+                <div class="tab-pane active" id="Home-icon">
+                    <nav class="sidebar-nav sidebar-scroll">
+                        <ul class="metismenu">
+                            <li><a th:href="@{/welcome}"><i class="icon-speedometer"></i><span>主面板</span></a></li>
+                            <li sec:authorize="hasRole('admin')" class="my-header">用户功能</li>
+                            <li sec:authorize="hasRole('admin')"><a th:href="@{/page-createCase.html}"><i class="icon-paper-plane"></i><span>创建案件</span></a></li>
+                            <li sec:authorize="hasRole('admin')"><a th:href="@{/case}"><i class="icon-paper-plane"></i><span>案件列表</span></a></li>
+                            <li sec:authorize="hasRole('admin')"><a th:href="@{/forms-validation.html}"><i class="icon-paper-plane"></i><span>案件分析</span></a></li>
+<!--                            <li sec:authorize="hasRole('admin')"><a th:href="@{/toMonitorBlock}"><i class="icon-paper-plane"></i><span>区块链区块监控</span></a></li>-->
+<!--                            <li sec:authorize="hasRole('admin')"><a th:href="@{/toMonitorTransaction}"><i class="icon-paper-plane"></i><span>区块链交易监控</span></a></li>-->
+<!--                            <li sec:authorize="hasRole('admin')"><a th:href="@{/toMonitorVerification}"><i class="icon-paper-plane"></i><span>系统验证监控</span></a></li>-->
+<!--                            <li sec:authorize="hasRole('user')" class="my-header">用户功能</li>-->
+<!--                            <li class="active" sec:authorize="hasRole('user')"><a th:href="@{/toWeb3AddTx}"><i class="icon-paper-plane"></i><span>添加调查信息</span></a></li>-->
+<!--                            <li sec:authorize="hasRole('user')"><a th:href="@{/toWeb3QuireTx}"><i class="icon-paper-plane"></i><span>查询调查信息</span></a></li>-->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <div class="block-header" id="div1">
+            <div class="row clearfix">
+                <div class="col-md-12 col-sm-12">
+                    <h2>可访问证据</h2>
+                    <p style="color: blue" th:text="${msg}"}></p>
+                    <p style="color: blue" th:text="${result}" th:if="${not #strings.isEmpty(result)}"></p>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a href="#"><i class="fa fa-cube"></i></a></li>
+                          <li class="breadcrumb-item"><a href="#">Eunomia</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">可访问证据</li>
+                        </ol>
+                    </nav>
+                    <div class="steps">
+
+                        <div class="step-line step-completed"></div>
+
+                        <div class="step step-completed">
+                            <div class="step-text">1</div>
+                            <div class="step-main">1.创建案件</div>
+                        </div>
+
+                        <div class="step-line step-completed"></div>
+                        <div class="step-line step-completed"></div>
+
+
+                        <div class="step step-completed">
+                            <div class="step-text">2</div>
+                            <div class="step-main">2.调查请求</div>
+                        </div>
+
+                        <div class="step-line step-completed"></div>
+                        <div class="step-line step-completed"> </div>
+                        <div class="step step-completed">
+                            <div class="step-text">3</div>
+                            <div class="step-main">3.数据请求</div>
+                        </div>
+                        <div class="step-line step-completed"></div>
+                        <div class="step-line"> </div>
+                        <div class="step">
+                            <div class="step-text">4</div>
+                            <div class="step-main">4.数据检索</div>
+                        </div>
+                        <div class="step-line "></div>
+                        <div class="step-line"> </div>
+                        <div class="step">
+                            <div class="step-text">5</div>
+                            <div class="step-main">5.数据分析</div>
+                        </div>
+                        <div class="step-line "></div>
+                        <div class="step-line"></div>
+                        <div class="step">
+                            <div class="step-text">6</div>
+                            <div class="step-main">6.提交报告</div>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step-line "></div>
+                        <div class="step">
+                            <div class="step-text">7</div>
+                            <div class="step-main">7.调查结束</div>
+                        </div>
+                        <div class="step-line"></div>
+                    </div>
+                </div>            
+                <!-- <div class="col-md-6 col-sm-12 text-right hidden-xs">
+                    <a href="javascript:void(0);" class="btn btn-sm btn-primary btn-round" title="">Add New</a>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="container-fluid" id="div2">
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="table-responsive invoice_list mb-4">
+                        <table class="table table-hover js-basic-example dataTable table-custom spacing8">
+                            <thead>
+                                <tr> 
+                                    <th style="width: 10px;">证据编号</th>
+                                    <th style="width: 50px;">事故类型</th>
+                                    <th style="width: 50px;">时间</th>
+                                    <th style="width: 50px;">地点</th>
+                                    <th style="width: 110px;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="evds:${evd}">
+                                    <td th:text="${evds.getEvidenceId()}"></td>
+                                    <td th:text="${evds.getAccidentType()}"></td>
+                                    <td th:text="${evds.getTime()}"></td>
+                                    <td><span class="badge badge-success ml-0 mr-0" th:text="${evds.getLocation()}"></span></td>
+                                    <form th:action="@{/dataRetrieval}" method="post">
+                                        <td>
+                                            <input name="username" th:value="${name}" hidden>
+                                            <input name="caseId" th:value="${Id}" hidden>
+                                            <input name="evidenceId" th:value="${evds.getEvidenceId()}" hidden>
+                                            <input name="evidencePath" th:value="${evds.getPath()}" hidden>
+                                            <button class="btn btn-sm btn-primary">下载证据</button>
+                                        </td>
+                                    </form>
+                                </tr>
+<!--                                <tr>-->
+<!--                                    <td>-->
+<!--                                        <span>01</span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <div class="d-flex align-items-center">-->
+<!--                                            &lt;!&ndash; <div class="avtar-pic w35 bg-red" data-toggle="tooltip" data-placement="top" title="Avatar Name"><span>SS</span></div> &ndash;&gt;-->
+<!--                                            <div class="ml-3">-->
+<!--                                                <a href="page-invoices-detail.html" title="">超车事故</a>-->
+<!--                                                &lt;!&ndash; <p class="mb-0">south.shyanne@example.com</p> &ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                        </div>                                        -->
+<!--                                    </td>-->
+<!--                                    <td>2021-06-01</td>-->
+<!--                                    <td><span class="badge badge-success ml-0 mr-0">南七街道</span></td>-->
+<!--                                    <td>-->
+<!--                                        视频-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>-->
+<!--                                        <span>01</span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <div class="d-flex align-items-center">-->
+<!--                                            &lt;!&ndash; <div class="avtar-pic w35 bg-red" data-toggle="tooltip" data-placement="top" title="Avatar Name"><span>SS</span></div> &ndash;&gt;-->
+<!--                                            <div class="ml-3">-->
+<!--                                                <a href="page-invoices-detail.html" title="">会车事故</a>-->
+<!--                                                &lt;!&ndash; <p class="mb-0">south.shyanne@example.com</p> &ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                        </div>                                        -->
+<!--                                    </td>-->
+<!--                                    <td>2021-06-01</td>-->
+<!--                                    <td><span class="badge badge-success ml-0 mr-0">三里庵街道</span></td>-->
+<!--                                    <td>-->
+<!--                                        视频-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>-->
+<!--                                        <span>01</span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <div class="d-flex align-items-center">-->
+<!--                                            &lt;!&ndash; <div class="avtar-pic w35 bg-red" data-toggle="tooltip" data-placement="top" title="Avatar Name"><span>SS</span></div> &ndash;&gt;-->
+<!--                                            <div class="ml-3">-->
+<!--                                                <a href="page-invoices-detail.html" title="">直行事故</a>-->
+<!--                                                &lt;!&ndash; <p class="mb-0">south.shyanne@example.com</p> &ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                        </div>                                        -->
+<!--                                    </td>-->
+<!--                                    <td>2021-06-01</td>-->
+<!--                                    <td><span class="badge badge-success ml-0 mr-0">南七街道</span></td>-->
+<!--                                    <td>-->
+<!--                                        视频-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+                                <!-- <tr>
+                                    <td>
+                                        <span>02</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="../assets/images/xs/avatar2.jpg" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 h35 rounded">
+                                            <div class="ml-3">
+                                                <a href="javascript:void(0);" title="">Zoe Baker</a>
+                                                <p class="mb-0">zoe.baker@example.com</p>
+                                            </div>
+                                        </div>                                        
+                                    </td>
+                                    <td>$378</td>
+                                    <td><span class="badge badge-success ml-0 mr-0">Done</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-default" title="Send Invoice" data-toggle="tooltip" data-placement="top"><i class="icon-envelope"></i></button>
+                                        <button type="button" class="btn btn-sm btn-default " title="Print" data-toggle="tooltip" data-placement="top"><i class="icon-printer"></i></button>
+                                        <button type="button" class="btn btn-sm btn-default" title="Delete" data-toggle="tooltip" data-placement="top"><i class="icon-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>03</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                                <div class="avtar-pic w35 bg-indigo" data-toggle="tooltip" data-placement="top" title="Avatar Name"><span>CB</span></div>
+                                            <div class="ml-3">
+                                                <a href="javascript:void(0);" title="">Colin Brown</a>
+                                                <p class="mb-0">colinbrown@example.com</p>
+                                            </div>
+                                        </div>                                        
+                                    </td>
+                                    <td>$653</td>
+                                    <td><span class="badge badge-success ml-0 mr-0">Done</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-default" title="Send Invoice" data-toggle="tooltip" data-placement="top"><i class="icon-envelope"></i></button>
+                                        <button type="button" class="btn btn-sm btn-default " title="Print" data-toggle="tooltip" data-placement="top"><i class="icon-printer"></i></button>
+                                        <button type="button" class="btn btn-sm btn-default" title="Delete" data-toggle="tooltip" data-placement="top"><i class="icon-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>04</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avtar-pic w35 bg-green" data-toggle="tooltip" data-placement="top" title="Avatar Name"><span>KG</span></div>
+                                            <div class="ml-3">
+                                                <a href="javascript:void(0);" title="">Kevin Gill</a>
+                                                <p class="mb-0">kevin.gill@example.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>$451</td>
+                                    <td><span class="badge badge-warning  ml-0 mr-0">Panding</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-default" title="Send Invoice" data-toggle="tooltip" data-placement="top"><i class="icon-envelope"></i></button>
+                                        <button type="button" class="btn btn-sm btn-default " title="Print" data-toggle="tooltip" data-placement="top"><i class="icon-printer"></i></button>
+                                        <button type="button" class="btn btn-sm btn-default" title="Delete" data-toggle="tooltip" data-placement="top"><i class="icon-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>05</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="../assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 h35 rounded">
+                                            <div class="ml-3">
+                                                <a href="javascript:void(0);" title="">Brandon Smith</a>
+                                                <p class="mb-0">Maria.gill@example.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>$1,989</td>
+                                    <td><span class="badge badge-success  ml-0 mr-0">Done</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-default" title="Send Invoice" data-toggle="tooltip" data-placement="top"><i class="icon-envelope"></i></button>
+                                        <button type="button" class="btn btn-sm btn-default " title="Print" data-toggle="tooltip" data-placement="top"><i class="icon-printer"></i></button>
+                                        <button type="button" class="btn btn-sm btn-default" title="Delete" data-toggle="tooltip" data-placement="top"><i class="icon-trash"></i></button>
+                                    </td>
+                                </tr> -->
+                                <!-- <tr>
+                                    <td>
+                                        <span>06</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="../assets/images/xs/avatar6.jpg" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 h35 rounded">
+                                            <div class="ml-3">
+                                                <a href="javascript:void(0);" title="">Kevin Baker</a>
+                                                <p class="mb-0">kevin.baker@example.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>$343</td>
+                                    <td><span class="badge badge-warning  ml-0 mr-0">Panding</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-default" title="Send Invoice" data-toggle="tooltip" data-placement="top"><i class="icon-envelope"></i></button>
+                                        <button type="button" class="btn btn-sm btn-default " title="Print" data-toggle="tooltip" data-placement="top"><i class="icon-printer"></i></button>
+                                        <button type="button" class="btn btn-sm btn-default" title="Delete" data-toggle="tooltip" data-placement="top"><i class="icon-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>13</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="../assets/images/xs/avatar3.jpg" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 h35 rounded">
+                                            <div class="ml-3">
+                                                <a href="javascript:void(0);" title="">Colin Brown</a>
+                                                <p class="mb-0">colin-brown@example.com</p>
+                                            </div>
+                                        </div>                                        
+                                    </td>
+                                    <td>$653</td>
+                                    <td><span class="badge badge-success ml-0 mr-0">Done</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-default" title="Send Invoice" data-toggle="tooltip" data-placement="top"><i class="icon-envelope"></i></button>
+                                        <button type="button" class="btn btn-sm btn-default " title="Print" data-toggle="tooltip" data-placement="top"><i class="icon-printer"></i></button>
+                                        <button type="button" class="btn btn-sm btn-default" title="Delete" data-toggle="tooltip" data-placement="top"><i class="icon-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>14</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="../assets/images/xs/avatar4.jpg" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 h35 rounded">
+                                            <div class="ml-3">
+                                                <a href="javascript:void(0);" title="">Kevin Gill</a>
+                                                <p class="mb-0">kevin-gill@example.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>$451</td>
+                                    <td><span class="badge badge-warning  ml-0 mr-0">Panding</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-default" title="Send Invoice" data-toggle="tooltip" data-placement="top"><i class="icon-envelope"></i></button>
+                                        <button type="button" class="btn btn-sm btn-default " title="Print" data-toggle="tooltip" data-placement="top"><i class="icon-printer"></i></button>
+                                        <button type="button" class="btn btn-sm btn-default" title="Delete" data-toggle="tooltip" data-placement="top"><i class="icon-trash"></i></button>
+                                    </td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<!-- Javascript -->
+<!-- Latest jQuery -->
+<script th:src="@{/vendor/jquery/jquery-3.3.1.min.js}"></script>
+
+<!-- Bootstrap 4x JS  -->
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/bundles/vendorscripts.bundle.js}"></script>
+
+<script th:src="@{/bundles/datatablescripts.bundle.js}"></script>
+
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/pages/tables/invoice.js}"></script>
+</body>
+</html>

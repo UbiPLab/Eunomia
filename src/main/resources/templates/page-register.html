@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Eunomia | Sign Up</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Qubes Bootstrap 4x admin is super flexible, powerful, clean &amp; modern responsive admin dashboard with unlimited possibilities.">
+    <meta name="author" content="GetBootstrap, design by: puffintheme.com">
+
+    <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/animate-css/vivify.min.css}">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" th:href="@{/css/site.min.css}">
+</head>
+
+<body class="theme-blue">
+
+<script type="text/javascript">
+
+    function checkPassword() {
+        var password = document.getElementById("password").value;
+        var passwordAgain = document.getElementById("passwordAgain").value;
+
+        if (password != passwordAgain) {
+            document.getElementById("tips").style.display = 'block';
+            document.getElementById("submit").disabled = true;
+        } else {
+            document.getElementById("tips").style.display = 'none';
+            document.getElementById("submit").disabled = false;
+        }
+    }
+</script>
+
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="m-t-30"><i class="fa fa-cube font-25"></i></div>
+        <p>正在加载, 请耐心等待...</p>
+    </div>
+</div>
+<!-- Overlay For Sidebars -->
+
+<div class="auth-main">
+    <div class="auth_div">
+        <div class="card">
+            <div class="auth_brand">
+                <a class="navbar-brand" href="javascript:void(0);"><i class="fa fa-cube font-25"></i> Eunomia</a>
+            </div>
+            <div class="body">
+                <p class="lead">数据用户实体注册</p>
+
+                <form class="form-auth-small m-t-20" th:action="@{/dataUserRegister}" method="POST">
+                    <!--如果msg的消息不为空，则显示这个消息-->
+                    <div class="text-center">
+                        <p class="form-control text-red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control round" placeholder="请输入用户名" name="username"
+                               id="username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control round" placeholder="请输入密码" name="password"
+                               id="password" onkeyup="checkPassword()">
+                    </div>                    <div class="form-group">
+                        <input type="password" class="form-control round" placeholder="请再次输入密码" name="passwordAgain"
+                               id="passwordAgain" onkeyup="checkPassword()">
+                    </div>
+                    <div class='form-group'>
+                        <i class='form-control text-red' id="tips" style="display: none">两次输入密码不一致!</i>
+                    </div>
+
+                    <!--个人信息部分-->
+                    <div class="form-group">
+                        <input type="text" class="form-control round" placeholder="请输入姓名" th:value="${name}" name="name"
+                               id="name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control round" placeholder="请输入警员编号" th:value="${policeNumber}"
+                               name="policeNumber" id="policeNumber">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control round" placeholder="请输入警员类型" th:value="${policeType}"
+                               name="policeType" id="policeType">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control round" placeholder="请输入所在警察局" th:value="${policeStation}"
+                               name="policeStation" id="policeStation">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control round" placeholder="请输入邮箱" th:value="${email}"
+                               name="email" id="email">
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control round" placeholder="请输入手机号码" th:value="${tel}" name="tel"
+                               id="tel">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control round" placeholder="请输入地址" th:value="${address}"
+                               name="address" id="address">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-round btn-block" id="submit">注册</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END WRAPPER -->
+
+<!-- Latest jQuery -->
+<script th:src="@{/vendor/jquery/jquery-3.3.1.min.js}"></script>
+
+<!-- Bootstrap 4x JS  -->
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/bundles/vendorscripts.bundle.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+
+</body>
+</html>

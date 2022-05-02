@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Eunomia | Profile</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Qubes Bootstrap 4x admin is super flexible, powerful, clean &amp; modern responsive admin dashboard with unlimited possibilities.">
+    <meta name="author" content="GetBootstrap, design by: puffintheme.com">
+
+    <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/vendor/animate-css/vivify.min.css}">
+
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css}">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" th:href="@{/css/site.min.css}">
+    <link rel="stylesheet" th:href="@{/css/steps.css}">
+
+    <style type="text/css">
+        #div1{
+            margin-bottom: 25px;
+        }
+        #div2{
+            margin-top: 50px;
+        }
+    </style>
+
+</head>
+<body class="theme-blue">
+
+<!-- Page Loader -->
+<!--<div class="page-loader-wrapper">-->
+<!--    <div class="loader">-->
+<!--        <div class="m-t-30"><i class="fa fa-cube font-25"></i></div>-->
+<!--        <p>Please wait...</p>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+
+<div id="wrapper">
+
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+
+            <div class="navbar-left">
+                <div class="navbar-brand">
+                    <a class="small_menu_btn" href="javascript:void(0);"><i class="fa fa-align-left"></i></a>
+                    <a th:href="@{/templates/index.html}"><span>Eunomia 安全车联网数字取证</span></a>
+                </div>
+            </div>
+                <!-- 右顶部栏 -->
+                <div class="navbar-right">
+                    <div id="navbar-menu">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                            <li><a href="page-login.html" class="icon-menu"><i class="fa fa-power-off"></i></a></li>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+        </div>
+    </nav>
+
+    <!-- 左边栏 -->
+    <div id="left-sidebar" class="sidebar">
+        <div class="sidebar_list">
+            <div class="tab-content" id="main-menu">
+                <div class="tab-pane active" id="Home-icon">
+                    <nav class="sidebar-nav sidebar-scroll">
+                        <ul class="metismenu">
+                            <li><a th:href="@{/welcome}"><i class="icon-speedometer"></i><span>主面板</span></a></li>
+                            <li sec:authorize="hasRole('admin')" class="my-header">用户功能</li>
+
+                            <li class="active" sec:authorize="hasRole('admin')"><a th:href="@{/page-createCase.html}"><i class="icon-paper-plane"></i><span>创建案件</span></a></li>
+                            <li sec:authorize="hasRole('admin')"><a th:href="@{/case}"><i class="icon-paper-plane"></i><span>案件列表</span></a></li>
+                            <li sec:authorize="hasRole('admin')"><a th:href="@{/forms-validation.html}"><i class="icon-paper-plane"></i><span>案件分析</span></a></li>
+                            <!--                            <li sec:authorize="hasRole('admin')"><a th:href="@{/toMonitorTransaction}"><i class="icon-paper-plane"></i><span>区块链交易监控</span></a></li>-->
+                            <!--                            <li sec:authorize="hasRole('admin')"><a th:href="@{/toMonitorVerification}"><i class="icon-paper-plane"></i><span>系统验证监控</span></a></li>-->
+                            <!--                            <li sec:authorize="hasRole('user')" class="my-header">用户功能</li>-->
+                            <!--                            <li class="active" sec:authorize="hasRole('user')"><a th:href="@{/toWeb3AddTx}"><i class="icon-paper-plane"></i><span>添加调查信息</span></a></li>-->
+                            <!--                            <li sec:authorize="hasRole('user')"><a th:href="@{/toWeb3QuireTx}"><i class="icon-paper-plane"></i><span>查询调查信息</span></a></li>-->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <div class="block-header" id="div1">
+            <div class="row clearfix">
+                <div class="col-md-12 col-sm-12">
+                    <h2>创建案件</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-cube"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#">Eunomia</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">创建案件</li>
+                        </ol>
+                    </nav>
+                    <div class="steps">
+
+                        <div class="step-line step-completed"></div>
+
+                        <div class="step step-completed">
+                            <div class="step-text">1</div>
+                            <div class="step-main">1.案件创建</div>
+                        </div>
+
+                        <div class="step-line step-completed"></div>
+                        <div class="step-line "></div>
+
+
+                        <div class="step ">
+                            <div class="step-text">2</div>
+                            <div class="step-main">2.调查请求</div>
+                        </div>
+
+                        <div class="step-line "></div>
+                        <div class="step-line "> </div>
+                        <div class="step ">
+                            <div class="step-text">3</div>
+                            <div class="step-main">3.数据请求</div>
+                        </div>
+                        <div class="step-line "></div>
+                        <div class="step-line"> </div>
+                        <div class="step">
+                            <div class="step-text">4</div>
+                            <div class="step-main">4.数据检索</div>
+                        </div>
+                        <div class="step-line "></div>
+                        <div class="step-line"> </div>
+                        <div class="step">
+                            <div class="step-text">5</div>
+                            <div class="step-main">5.数据分析</div>
+                        </div>
+                        <div class="step-line "></div>
+                        <div class="step-line"></div>
+                        <div class="step">
+                            <div class="step-text">6</div>
+                            <div class="step-main">6.提交报告</div>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step-line "></div>
+                        <div class="step">
+                            <div class="step-text">7</div>
+                            <div class="step-main">7.调查结束</div>
+                        </div>
+                        <div class="step-line"></div>
+                    </div>
+                </div>
+                <!-- <div class="col-md-6 col-sm-12 text-right hidden-xs">
+                    <a href="javascript:void(0);" class="btn btn-sm btn-primary btn-round" title="">Add New</a>
+                </div> -->
+            </div>
+        </div>
+
+
+        <div class="container-fluid" id="div2">
+            <div class="row clearfix">
+                <!-- <div class="col-md-12">
+                    <div class="card social">
+                        <div class="profile-header d-flex justify-content-between justify-content-center">
+                            <div class="d-flex">
+                                <div class="mr-3">
+                                    <img src="../assets/images/user.png" class="rounded" alt="">
+                                </div>
+                                <div class="details">
+                                    <h5 class="mb-0">Louis Pierce</h5>
+                                    <span class="text-light">Ui UX Designer</span>
+                                    <p class="mb-0"><span>Posts: <strong>321</strong></span> <span>Followers: <strong>4,230</strong></span> <span>Following: <strong>560</strong></span></p>
+                                </div>                                
+                            </div>
+                            <div>
+                                <button class="btn btn-primary btn-sm">Follow</button>
+                                <button class="btn btn-success btn-sm">Message</button>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>                -->
+                <!--
+                                <div class="col-xl-3 col-lg-4 col-md-5">
+                                    <div class="card">
+                                        <div class="header">
+                                            <h2>Info</h2>
+                                            <ul class="header-dropdown dropdown">
+                                                <li><a href="javascript:void(0);" class="full-screen"><i class="icon-frame"></i></a></li>
+                                                <li class="dropdown">
+                                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="javascript:void(0);">Action</a></li>
+                                                        <li><a href="javascript:void(0);">Another Action</a></li>
+                                                        <li><a href="javascript:void(0);">Something else</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="body">
+                                            <small class="text-muted">Address: </small>
+                                            <p>795 Folsom Ave, Suite 600 San Francisco, 94107</p>
+                                            <div>
+                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1923731.7533500232!2d-120.39098936853455!3d37.63767091877441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sin!4v1522391841133" width="100%" height="150" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                            </div>
+                                            <hr>
+                                            <small class="text-muted">Email address: </small>
+                                            <p>louispierce@example.com</p>
+                                            <hr>
+                                            <small class="text-muted">Mobile: </small>
+                                            <p>+ 202-222-2121</p>
+                                            <hr>
+                                            <small class="text-muted">Birth Date: </small>
+                                            <p class="m-b-0">October 17th, 93</p>
+                                            <hr>
+                                            <small class="text-muted">Social: </small>
+                                            <p><i class="fa fa-twitter m-r-5"></i> twitter.com/example</p>
+                                            <p><i class="fa fa-facebook  m-r-5"></i> facebook.com/example</p>
+                                            <p><i class="fa fa-github m-r-5"></i> github.com/example</p>
+                                            <p><i class="fa fa-instagram m-r-5"></i> instagram.com/example</p>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                <div class="col-xl-12 col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>案件基本信息</h2>
+                            <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+                            <ul class="header-dropdown dropdown">
+                                <li><a href="javascript:void(0);" class="full-screen"><i class="icon-frame"></i></a>
+                                </li>
+                                <!-- <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another Action</a></li>
+                                        <li><a href="javascript:void(0);">Something else</a></li>
+                                    </ul>
+                                </li> -->
+                            </ul>
+                        </div>
+                        <form th:action="@{/createCase}" method="POST">
+                            <div class="body">
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="-- 输入案件名称 --  " name="caseName">
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Last Name">
+                                        </div>
+                                    </div> -->
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <select class="form-control" name="caseType">
+                                                <option value="">-- 事故发生类型 --</option>
+                                                <option value="交通事故">交通事故</option>
+                                                <option value="犯罪">犯罪</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="col-lg-4 col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="icon-globe"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="http:// data-provide="datepicker" data-date-autoclose="true"">
+                                            </div>
+                                        </div>
+                                    </div>                                 -->
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <select class="form-control" name="casePlace">
+                                                <option value="">-- 事故发生地点 --</option>
+                                                <option value="司隶街道">司隶街道</option>
+                                                <option value="兖州街道">兖州街道</option>
+                                                <option value="青州街道">青州街道</option>
+                                                <option value="豫州街道">豫州街道</option>
+                                                <option value="冀州街道">冀州街道</option>
+                                                <option value="幽州街道">幽州街道</option>
+                                                <option value="并州街道">并州街道</option>
+                                                <option value="凉州街道">凉州街道</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <!--                                                <div class="input-group-prepend">-->
+                                                <!--                                                    <span class="input-group-text"><i class="icon-calendar"></i></span>-->
+                                                <!--                                                </div>-->
+                                                <input type="date" class="form-control" placeholder="事故发生时间" name="caseTime">
+                                            </div>
+                                        </div>
+                                    </div>
+<!--                                    <div class="col-lg-12 col-md-12">-->
+<!--                                        <div class="form-group">-->
+<!--                                            <select class="form-control" name="dataType">-->
+<!--                                                <option value="">&#45;&#45; 证据类型 &#45;&#45;</option>-->
+<!--                                                <option value="图片">照片</option>-->
+<!--                                                <option value="视频">视频</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <input name="dataType" value="图片" hidden>
+                                    <!-- <div class="col-lg-4 col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="State/Province">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="City">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <textarea rows="4" type="text" class="form-control" placeholder="Address"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <ul class="list-group mb-3 tp-setting">
+                                            <li class="list-group-item">
+                                                Anyone seeing my profile page
+                                                <div class="float-right">
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked>
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                Anyone send me a message
+                                                <div class="float-right">
+                                                    <label class="switch">
+                                                        <input type="checkbox">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                Anyone posts a comment on my post
+                                                <div class="float-right">
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked>
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                Anyone invite me to group
+                                                <div class="float-right">
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked>
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-round btn-primary align-center">提交</button>
+                            </div>
+                             &nbsp;&nbsp;
+                            <!-- <button type="button" class="btn btn-round btn-default">Cancel</button> -->
+<!--                    </div>-->
+                    </form>
+                </div>
+                <!-- <div class="card">
+                    <div class="header">
+                        <h2>Account Data</h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" value="louispierce" disabled placeholder="Username">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" value="louis.info@yourdomain.com" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Phone Number">
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12">
+                                <hr>
+                                <h6>Change Password</h6>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Current Password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="New Password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Confirm New Password">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-round btn-primary">Update</button> &nbsp;&nbsp;
+                        <button type="button" class="btn btn-round btn-default">Cancel</button>
+                    </div>
+                </div>                   -->
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<!-- Javascript -->
+<!-- Latest jQuery -->
+<script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+
+<!-- Bootstrap 4x JS  -->
+<script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="assets/bundles/vendorscripts.bundle.js"></script>
+
+<script src="../assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+<script src="assets/js/common.js"></script>
+</body>
+</html>
